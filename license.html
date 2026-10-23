@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>فعال‌سازی مولا جیم</title>
+  <style>
+    *{box-sizing:border-box} body{margin:0;min-height:100vh;display:grid;place-items:center;background:radial-gradient(circle at 20% 10%,#b7ff85 0,#35bf67 35%,#063c26 100%);font-family:Tahoma,"Vazirmatn",sans-serif;color:#123d28}
+    .card{width:410px;min-height:465px;padding:35px 32px;border-radius:28px;text-align:center;background:rgba(249,255,241,.95);box-shadow:0 30px 70px rgba(0,43,25,.38)}
+    .logo{width:86px;height:86px;margin:auto auto 18px;border-radius:28px;display:grid;place-items:center;font-size:44px;background:linear-gradient(135deg,#dcff72,#00a857);box-shadow:inset 0 2px 10px #fff8,0 10px 20px #0c713344}
+    h1{font-size:23px;margin:0 0 10px}p{font-size:14px;line-height:1.9;color:#527361;margin:0 0 25px}.label{display:block;text-align:right;font-size:13px;font-weight:bold;margin-bottom:8px}
+    input{width:100%;direction:ltr;text-align:center;letter-spacing:1px;font-size:16px;font-weight:bold;padding:15px 10px;border:2px solid #b5e8bd;border-radius:13px;outline:none;text-transform:uppercase}input:focus{border-color:#12975d;box-shadow:0 0 0 4px #a7f0b066}
+    button{margin-top:15px;width:100%;border:0;border-radius:13px;padding:15px;background:linear-gradient(135deg,#07874c,#17bd68);color:white;font-size:16px;font-weight:bold;cursor:pointer;box-shadow:0 8px 18px #087d3b44}button:hover{filter:brightness(1.07)}#message{min-height:22px;font-size:13px;margin-top:14px;color:#c23d35}.foot{margin-top:26px;font-size:12px;color:#698979}
+  </style>
+</head>
+<body>
+  <main class="card">
+    <div class="logo">🏋️</div>
+    <h1>فعال‌سازی مولا جیم</h1>
+    <p>برای استفاده از نسخه دسک‌تاپ، لایسنس کی را وارد نمایید.</p>
+    <label class="label" for="key">لایسنس کی</label>
+    <input id="key" autocomplete="off" placeholder="MGM-AFG-XXXX-XXXX-XXXX" autofocus>
+    <button id="activate">فعال‌سازی برنامه</button>
+    <div id="message" role="alert"></div>
+    <div class="foot">Mawlana Gym Management • Desktop Edition</div>
+  </main>
+  <script>
+    const input = document.getElementById('key');
+    const message = document.getElementById('message');
+    async function activate() {
+      message.textContent = '';
+      const result = await window.licenseApi.activate(input.value);
+      if (!result.ok) message.textContent = result.message;
+    }
+    document.getElementById('activate').addEventListener('click', activate);
+    input.addEventListener('keydown', event => { if (event.key === 'Enter') activate(); });
+  </script>
+</body>
+</html>
